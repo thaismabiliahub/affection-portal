@@ -14,20 +14,20 @@
     --bordo: #532137;
     --rosa: #dd597d;
     --amarelo: #f9a01b;
-    --grafite: #2c2c2a;
-    --bg: #f7f5f3;
-    --card: #ffffff;
-    --border: #e9e5e1;
-    --texto-suave: #6b6660;
-    --erro: #b91c1c;
-    --sucesso: #047857;
+    --creme: #f5ede8;
+    --creme-suave: #cfb8be;
+    --card-bg: #3a1f29;
+    --input-bg: rgba(255,255,255,0.05);
+    --input-border: rgba(245,237,232,0.18);
+    --erro: #fca5a5;
+    --sucesso: #6ee7b7;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
 body {
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #f7f5f3 0%, #ede4dc 100%);
-    color: var(--grafite);
+    background: radial-gradient(ellipse at top, #2a0f17 0%, #1a070d 60%, #100509 100%);
+    color: var(--creme);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,12 +38,27 @@ body {
 .fraunces { font-family: 'Fraunces', serif; }
 
 .card {
-    background: var(--card);
-    border-radius: 16px;
+    background: var(--card-bg);
+    border-radius: 20px;
     width: 100%;
-    max-width: 420px;
-    box-shadow: 0 20px 60px rgba(83,33,55,0.12), 0 4px 12px rgba(0,0,0,0.04);
-    padding: 40px 36px;
+    max-width: 440px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.3);
+    padding: 44px 38px;
+    position: relative;
+    border: 1px solid rgba(245,237,232,0.08);
+}
+.card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(245,237,232,0.4) 0%, rgba(221,89,125,0.2) 40%, rgba(83,33,55,0) 80%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
 }
 
 .brand {
@@ -51,31 +66,32 @@ body {
     margin-bottom: 32px;
 }
 .brand-mark {
-    width: 56px;
-    height: 56px;
-    background: var(--bordo);
-    border-radius: 14px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 28px;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
+}
+.brand-mark img {
+    width: 240px;
+    height: 240px;
+    display: block;
 }
 .brand-title {
     font-family: 'Fraunces', serif;
-    font-size: 26px;
+    font-size: 44px;
     font-weight: 600;
-    color: var(--bordo);
+    color: var(--creme);
     letter-spacing: -0.02em;
+    line-height: 1;
+    margin-top: 4px;
 }
 .brand-sub {
-    font-size: 13px;
-    color: var(--texto-suave);
-    margin-top: 4px;
-    font-weight: 400;
+    font-size: 11px;
+    color: var(--creme-suave);
+    margin-top: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
 }
 
 h1.welcome {
@@ -83,12 +99,12 @@ h1.welcome {
     font-size: 22px;
     font-weight: 500;
     margin-bottom: 6px;
-    color: var(--grafite);
+    color: var(--creme);
     letter-spacing: -0.01em;
 }
 .welcome-sub {
     font-size: 13px;
-    color: var(--texto-suave);
+    color: var(--creme-suave);
     margin-bottom: 24px;
 }
 
@@ -97,31 +113,33 @@ h1.welcome {
 }
 .field label {
     display: block;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    color: var(--texto-suave);
+    color: var(--creme-suave);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin-bottom: 6px;
+    letter-spacing: 0.08em;
+    margin-bottom: 7px;
 }
 .input-wrap {
     position: relative;
 }
 .field input {
     width: 100%;
-    border: 1px solid var(--border);
+    border: 1px solid var(--input-border);
     border-radius: 10px;
     padding: 12px 14px;
     font-size: 15px;
     font-family: inherit;
-    background: white;
-    color: var(--grafite);
-    transition: border 0.15s, box-shadow 0.15s;
+    background: var(--input-bg);
+    color: var(--creme);
+    transition: border 0.15s, box-shadow 0.15s, background 0.15s;
 }
+.field input::placeholder { color: rgba(245,237,232,0.35); }
 .field input:focus {
     outline: none;
-    border-color: var(--bordo);
-    box-shadow: 0 0 0 4px rgba(83,33,55,0.08);
+    border-color: var(--rosa);
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 0 0 4px rgba(221,89,125,0.15);
 }
 .input-wrap input[type="password"],
 .input-wrap input[type="text"][data-pwd] {
@@ -138,13 +156,13 @@ h1.welcome {
     border: none;
     cursor: pointer;
     padding: 6px;
-    color: var(--texto-suave);
+    color: var(--creme-suave);
     border-radius: 6px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
 }
-.toggle-eye:hover { color: var(--bordo); background: #f3f0ed; }
+.toggle-eye:hover { color: var(--creme); background: rgba(255,255,255,0.06); }
 .toggle-eye svg { width: 18px; height: 18px; display: block; }
 
 .btn {
@@ -159,21 +177,23 @@ h1.welcome {
     transition: all 0.15s;
 }
 .btn-primary {
-    background: var(--bordo);
-    color: white;
+    background: var(--creme);
+    color: var(--bordo);
     margin-top: 8px;
+    letter-spacing: 0.02em;
 }
-.btn-primary:hover { background: var(--rosa); }
+.btn-primary:hover { background: white; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(245,237,232,0.15); }
 .btn-primary:disabled { opacity: 0.6; cursor: wait; }
 
 .btn-ghost {
     background: transparent;
-    color: var(--texto-suave);
+    color: var(--creme-suave);
     font-weight: 500;
     font-size: 13px;
     padding: 10px;
+    border: 1px solid rgba(245,237,232,0.15);
 }
-.btn-ghost:hover { color: var(--bordo); }
+.btn-ghost:hover { color: var(--creme); border-color: rgba(245,237,232,0.35); }
 
 .alerta {
     padding: 11px 14px;
@@ -183,20 +203,20 @@ h1.welcome {
     display: none;
 }
 .alerta.erro {
-    background: #fef2f2;
+    background: rgba(252,165,165,0.1);
     color: var(--erro);
-    border: 1px solid #fecaca;
+    border: 1px solid rgba(252,165,165,0.3);
     display: block;
 }
 .alerta.sucesso {
-    background: #ecfdf5;
+    background: rgba(110,231,183,0.1);
     color: var(--sucesso);
-    border: 1px solid #a7f3d0;
+    border: 1px solid rgba(110,231,183,0.3);
     display: block;
 }
 
 .divider {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(245,237,232,0.12);
     margin: 22px 0 18px;
     position: relative;
     text-align: center;
@@ -204,10 +224,10 @@ h1.welcome {
 .divider span {
     position: relative;
     top: -10px;
-    background: white;
+    background: var(--card-bg);
     padding: 0 12px;
     font-size: 11px;
-    color: var(--texto-suave);
+    color: var(--creme-suave);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-weight: 600;
@@ -217,17 +237,18 @@ h1.welcome {
     text-align: center;
     margin-top: 22px;
     font-size: 12px;
-    color: var(--texto-suave);
+    color: var(--creme-suave);
 }
-.foot a { color: var(--bordo); text-decoration: none; font-weight: 500; }
+.foot a { color: var(--creme); text-decoration: none; font-weight: 500; }
 .foot a:hover { text-decoration: underline; }
 
 .tab-bar {
     display: flex;
-    background: #f3f0ed;
+    background: rgba(255,255,255,0.04);
     border-radius: 10px;
     padding: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
+    border: 1px solid rgba(245,237,232,0.06);
 }
 .tab-btn {
     flex: 1;
@@ -238,14 +259,14 @@ h1.welcome {
     font-family: inherit;
     font-size: 13px;
     font-weight: 600;
-    color: var(--texto-suave);
+    color: var(--creme-suave);
     cursor: pointer;
     transition: all 0.15s;
 }
 .tab-btn.active {
-    background: white;
+    background: var(--creme);
     color: var(--bordo);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 </style>
 </head>
@@ -253,9 +274,9 @@ h1.welcome {
 
 <div class="card">
     <div class="brand">
-        <div class="brand-mark">A</div>
-        <div class="brand-title">Affection Portal</div>
-        <div class="brand-sub">Sistema financeiro</div>
+        <div class="brand-mark"><img src="icons/borboleta.png" alt="Affection"></div>
+        <div class="brand-title">Affection</div>
+        <div class="brand-sub">SISTEMA FINANCEIRO</div>
     </div>
 
     <div class="tab-bar">
